@@ -135,4 +135,20 @@ public class CompanyController {
 			headers.set("ResponseCode", ResponseCode.UpdateCompanyFailure);
 		return new ResponseEntity<Void>(headers, HttpStatus.OK);
 	}
+
+	/* API for retrieving the company details */
+
+	@ApiOperation(value = "Read Company", notes = "Read Companies based on cityName")
+	@ApiResponses(value = { @ApiResponse(code = 3111, message = "Company Read Successful"),
+			@ApiResponse(code = 3112, message = "Company Read Failure") })
+	@RequestMapping(value = "/getCompanies/", method = RequestMethod.GET)
+	public ResponseEntity<List<Company>> companyDetails(@RequestParam String cityName) {
+		List<Company> com = companyService.companyDetails(cityName);
+		HttpHeaders headers = new HttpHeaders();
+		if (com != null)
+			headers.set("ResponseCode", ResponseCode.ReadCompanySuccessful);
+		else
+			headers.set("ResponseCode", ResponseCode.ReadCompanyFailure);
+		return new ResponseEntity<List<Company>>(com, headers, HttpStatus.OK);
+	}
 }

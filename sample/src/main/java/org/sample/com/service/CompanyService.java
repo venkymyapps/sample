@@ -13,5 +13,6 @@ public interface CompanyService {
 	List<Company> company(String address);
 	boolean deleteCompany(int id);
 	boolean updateCompany(int id, String name, String address);
+	List<Company> companyDetails(String cityName);
 
 }

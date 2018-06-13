@@ -51,4 +51,9 @@ public class CompanyServiceImpl implements CompanyService {
 		return companyDAO.updateCompany(id, name, address);		
 	}
 
+	@Override
+	public List<Company> companyDetails(String cityName) {
+		return companyDAO.companyDetails(cityName);
+	}
+
 }

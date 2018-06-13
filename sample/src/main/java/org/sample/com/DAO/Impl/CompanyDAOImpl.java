@@ -71,4 +71,12 @@ public class CompanyDAOImpl implements CompanyDAO {
 				.setParameter("id", id).setParameter("name", name).setParameter("address", address).executeUpdate() == 0
 						? false : true;
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Company> companyDetails(String cityName) {
+		return entityManager.createNativeQuery(
+				"SELECT c.id, c.name, c.address, c.state as stateName FROM sample.company c WHERE c.cityName= :cityName",
+				"company_details").setParameter("cityName", cityName).getResultList();
+	}
 }
