@@ -54,9 +54,10 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 				.setParameter("firstName", employee.getFirstName()).setParameter("empName", employee.getEmpName())
 				.setParameter("joinDate", employee.getJoinDate()).setParameter("salary", employee.getSalary())
 				.setParameter("emailId", employee.getEmailId()).setParameter("status", employee.getStatus())
-				.setParameter("cityName", employee.getCityName()).setParameter("companyName", employee.getCompanyName())
-				.setParameter("desig", employee.getDesig()).setParameter("exp", employee.getExp())
-				.setParameter("mobileNo", employee.getMobileNo()).executeUpdate() == 0 ? false : true;
+				.setParameter("cityName", employee.getCity().getName())
+				.setParameter("companyName", employee.getCompany().getName()).setParameter("desig", employee.getDesig())
+				.setParameter("exp", employee.getExp()).setParameter("mobileNo", employee.getMobileNo())
+				.executeUpdate() == 0 ? false : true;
 		if (value == false)
 			return 0;
 		return 2;
