@@ -27,7 +27,7 @@ CREATE TABLE `city` (
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `city_idx_name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,8 +53,10 @@ CREATE TABLE `company` (
   `cityName` varchar(45) NOT NULL,
   `state` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `company_idx_name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `company_idx_name` (`name`),
+  KEY `city_name_idx` (`cityName`),
+  CONSTRAINT `city_name` FOREIGN KEY (`cityName`) REFERENCES `city` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,7 +65,6 @@ CREATE TABLE `company` (
 
 LOCK TABLES `company` WRITE;
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
-INSERT INTO `company` VALUES (39,'Polaris','kukatpally','Hyd','Telangana'),(40,'FirstSource','jp nagar','Banglore','Karnataka'),(43,'MyApps Solutions','jp nagar','Banglore','Karnataka'),(44,'Capgemini','BTM','Banglore','Karnataka'),(45,'TechMahindra','HitechCity','Hyd','Telangana');
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -76,24 +77,28 @@ DROP TABLE IF EXISTS `employee`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `employee` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `firstName` varchar(45) NOT NULL,
+  `firstName` varchar(45) DEFAULT NULL,
+  `lastName` varchar(45) DEFAULT NULL,
   `empName` varchar(45) NOT NULL,
-  `joinDate` date NOT NULL,
-  `salary` double NOT NULL,
   `emailId` varchar(45) NOT NULL,
-  `status` int(1) NOT NULL,
-  `cityName` varchar(45) NOT NULL,
-  `companyName` varchar(45) NOT NULL,
-  `desig` varchar(45) NOT NULL,
-  `exp` int(11) NOT NULL,
-  `mobileNo` varchar(45) NOT NULL,
+  `companyName` varchar(250) DEFAULT NULL,
+  `gender` varchar(1) DEFAULT NULL,
+  `dob` date DEFAULT NULL,
+  `age` tinyint(1) DEFAULT NULL,
+  `mobileNo` varchar(45) DEFAULT NULL,
+  `address` text,
+  `cityName` varchar(45) DEFAULT NULL,
+  `country` varchar(45) DEFAULT NULL,
+  `pincode` varchar(45) DEFAULT NULL,
+  `salary` double DEFAULT NULL,
+  `joinDate` date DEFAULT NULL,
+  `desig` varchar(45) DEFAULT NULL,
+  `exp` int(11) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `employee_idx_email` (`emailId`),
-  UNIQUE KEY `mobileNo_UNIQUE` (`mobileNo`),
-  UNIQUE KEY `empName_UNIQUE` (`empName`),
-  KEY `employee_company_idx` (`companyName`),
-  CONSTRAINT `employee_company` FOREIGN KEY (`companyName`) REFERENCES `company` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
+  KEY `city_Name_idx` (`cityName`),
+  KEY `company_Name_idx` (`companyName`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Employee Details';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,7 +107,6 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (50,'chc','aaa','2017-01-11',15000,'aaa@gmail.com',1,'Hyd','Polaris','R&D Engineer',453,'+919263784562'),(51,'ch','venky','2013-01-10',12000,'venky@gmail.com',1,'Banglore','MyApps Solutions','R&D Engineer',1915,'+918885531102'),(53,'chevula','bhanu','2017-02-03',20000,'bhanu.chevula@gmail.com',1,'Hyd','Capgemini','R&D Engineer',479,'+919475874657'),(55,'chevula','kalyani','2016-01-03',25000,'kalyani.chevula@gmail.com',0,'Banglore','Capgemini','R&D Engineer',876,'+919364872988'),(56,'ch','raja','2017-06-03',17000,'raj.ch@gmail.com',0,'Banglore','MyApps Solutions','Software Engineer',359,'+919473892748');
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -121,7 +125,7 @@ CREATE TABLE `locality` (
   UNIQUE KEY `locality_name` (`name`),
   KEY `city_id_idx` (`cityId`),
   CONSTRAINT `city_id` FOREIGN KEY (`cityId`) REFERENCES `city` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153,7 +157,7 @@ CREATE TABLE `location` (
   KEY `city_id_idx` (`cityId`),
   CONSTRAINT `location_city_id` FOREIGN KEY (`cityId`) REFERENCES `city` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `location_locality_id` FOREIGN KEY (`localityId`) REFERENCES `locality` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -328,4 +332,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-13 15:54:37
+-- Dump completed on 2018-06-16 13:09:18
