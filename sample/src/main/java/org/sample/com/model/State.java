@@ -21,7 +21,11 @@ import javax.persistence.UniqueConstraint;
 public class State  implements java.io.Serializable {
 
 
-     private Integer id;
+     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Integer id;
      private String name;
 
     public State() {

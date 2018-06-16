@@ -24,7 +24,11 @@ import javax.persistence.UniqueConstraint;
 public class Company  implements java.io.Serializable {
 
 
-     private Integer id;
+     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Integer id;
      private City city;
      private String name;
      private String address;

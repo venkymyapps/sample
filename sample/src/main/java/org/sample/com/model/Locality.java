@@ -27,7 +27,11 @@ import javax.persistence.UniqueConstraint;
 public class Locality  implements java.io.Serializable {
 
 
-     private Integer id;
+     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Integer id;
      private City city;
      private String name;
      private Set<Location> locations = new HashSet<Location>(0);

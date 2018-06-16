@@ -22,7 +22,11 @@ import javax.persistence.Table;
 public class Location  implements java.io.Serializable {
 
 
-     private Integer id;
+     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Integer id;
      private City city;
      private Locality locality;
      private String name;

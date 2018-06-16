@@ -21,7 +21,11 @@ import javax.persistence.UniqueConstraint;
 public class UserType  implements java.io.Serializable {
 
 
-     private Boolean id;
+     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Boolean id;
      private String name;
 
     public UserType() {
