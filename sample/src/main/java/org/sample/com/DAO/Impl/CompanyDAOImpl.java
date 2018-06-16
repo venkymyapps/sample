@@ -30,7 +30,7 @@ public class CompanyDAOImpl implements CompanyDAO {
 	@Override
 	public Object getCompany(int id) {
 		return entityManager.createNativeQuery(
-				"SELECT c.id, c.name, c.address, c.state as stateName FROM sample.company c WHERE c.id= :id",
+				"SELECT c.id, c.name, c.address, c.cityName, c.state FROM sample.company c WHERE c.id= :id",
 				"company_details").setParameter("id", id).getSingleResult();
 	}
 
@@ -38,7 +38,7 @@ public class CompanyDAOImpl implements CompanyDAO {
 	@Override
 	public List<Company> readCompany() {
 		return entityManager
-				.createNativeQuery("SELECT c.id, c.name, c.address, c.state as stateName FROM sample.company c",
+				.createNativeQuery("SELECT c.id, c.name, c.address, c.cityName, c.state FROM sample.company c",
 						"company_details")
 				.getResultList();
 	}
@@ -46,7 +46,7 @@ public class CompanyDAOImpl implements CompanyDAO {
 	@Override
 	public Company getCom(String name) {
 		return (Company) entityManager.createNativeQuery(
-				"SELECT c.id, c.name, c.address, c.state as stateName FROM sample.company c WHERE c.name= :name",
+				"SELECT c.id, c.name, c.address, c.cityName, c.state FROM sample.company c WHERE c.name= :name",
 				"company_details").setParameter("name", name).getSingleResult();
 	}
 
@@ -54,7 +54,7 @@ public class CompanyDAOImpl implements CompanyDAO {
 	@Override
 	public List<Company> company(String address) {
 		return entityManager.createNativeQuery(
-				"SELECT c.id, c.name, c.address, c.state as stateName FROM sample.company c WHERE c.address= :address",
+				"SELECT c.id, c.name, c.address, c.cityName, c.state FROM sample.company c WHERE c.address= :address",
 				"company_details").setParameter("address", address).getResultList();
 	}
 
@@ -76,7 +76,7 @@ public class CompanyDAOImpl implements CompanyDAO {
 	@Override
 	public List<Company> companyDetails(String cityName) {
 		return entityManager.createNativeQuery(
-				"SELECT c.id, c.name, c.address, c.state as stateName FROM sample.company c WHERE c.cityName= :cityName",
+				"SELECT c.id, c.name, c.address, c.cityName, c.state FROM sample.company c WHERE c.cityName= :cityName",
 				"company_details").setParameter("cityName", cityName).getResultList();
 	}
 }
