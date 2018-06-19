@@ -68,7 +68,6 @@ public class Company implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-
 	@Column(name = "id", unique = true, nullable = false)
 	public Integer getId() {
 		return this.id;
@@ -78,7 +77,7 @@ public class Company implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@JsonProperty(access = Access.WRITE_ONLY)
+	@JsonProperty(access = Access.AUTO)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cityName", nullable = false)
 	public City getCity() {
