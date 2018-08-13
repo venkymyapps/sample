@@ -17,22 +17,29 @@ public class EmployeeDetails implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private int id;
 	private String firstName;
+	private String lastName;
 	private String empName;
-	private Date joinDate;
-	private double salary;
 	private String emailId;
-	private int status;
+	private String companyName;
+	private String gender;
+	private Date dob;
+	private boolean age;
+	private String mobileNo;
+	private String address;
+	private String cityName;
+	private String country;
+	private String pincode;
+	private double salary;
+	private Date joinDate;
 	private String desig;
 	private int exp;
-	private String companyName;
-	private String cityName;
-	private String mobileNo;
+	private boolean status;
 
 	public EmployeeDetails() {
 	}
 
-	public EmployeeDetails(int id, String firstName, String empName, Date joinDate, double salary, String emailId,
-			int status, String cityName, String companyName, String desig, int exp, String mobileNo) {
+	/*public EmployeeDetails(int id, String firstName, String empName, Date joinDate, double salary, String emailId,
+			boolean status, String cityName, String companyName, String desig, int exp, String mobileNo) {
 		this.id = id;
 		this.firstName = firstName;
 		this.empName = empName;
@@ -45,6 +52,30 @@ public class EmployeeDetails implements java.io.Serializable {
 		this.desig = desig;
 		this.exp = exp;
 		this.mobileNo = mobileNo;
+	}*/
+
+	public EmployeeDetails(int id, String firstName, String lastName, String empName, String emailId,
+			String companyName, String gender, Date dob, boolean age, String mobileNo, String address, String cityName,
+			String country, String pincode, double salary, Date joinDate, String desig, int exp, boolean status) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.empName = empName;
+		this.emailId = emailId;
+		this.companyName = companyName;
+		this.gender = gender;
+		this.dob = dob;
+		this.age = age;
+		this.mobileNo = mobileNo;
+		this.address = address;
+		this.cityName = cityName;
+		this.country = country;
+		this.pincode = pincode;
+		this.salary = salary;
+		this.joinDate = joinDate;
+		this.desig = desig;
+		this.exp = exp;
+		this.status = status;
 	}
 
 	public int getId() {
@@ -96,11 +127,11 @@ public class EmployeeDetails implements java.io.Serializable {
 		this.emailId = emailId;
 	}
 
-	public int getStatus() {
-		return this.status;
+	public boolean isStatus() {
+		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 
@@ -134,6 +165,62 @@ public class EmployeeDetails implements java.io.Serializable {
 
 	public void setCityName(String cityName) {
 		this.cityName = cityName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public Date getDob() {
+		return dob;
+	}
+
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
+
+	public boolean isAge() {
+		return age;
+	}
+
+	public void setAge(boolean age) {
+		this.age = age;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(String pincode) {
+		this.pincode = pincode;
 	}
 
 	public String getMobileNo() {

@@ -34,7 +34,7 @@ public class EmployeeController {
 			@ApiResponse(code = 1412, message = "Delete Employee Failure") })
 	@RequestMapping(value = "/delEmployee/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteEmployee(@PathVariable("id") int id) {
-		Employee employee = employeeService.getEmployee(id);
+		Object employee = employeeService.getEmployee(id);
 		System.out.println("Fetching & Deleting Employee with id " + id);
 		HttpHeaders headers = new HttpHeaders();
 
@@ -55,14 +55,14 @@ public class EmployeeController {
 	@ApiResponses(value = { @ApiResponse(code = 1311, message = "Employee Read Successful"),
 			@ApiResponse(code = 1312, message = "Employee Read Failure") })
 	@RequestMapping(value = "/getEmp/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Employee> getTask(@PathVariable("id") int id) {
-		Employee employee = employeeService.getEmployee(id);
+	public ResponseEntity<Object> getTask(@PathVariable("id") int id) {
+		Object employee = employeeService.getEmployee(id);
 		HttpHeaders headers = new HttpHeaders();
 		if (employee != null)
 			headers.set("ResponseCode", ResponseCode.getEmployeeSuccessful);
 		else
 			headers.set("ResponseCode", ResponseCode.getEmployeeFailure);
-		return new ResponseEntity<Employee>(employee, headers, HttpStatus.OK);
+		return new ResponseEntity<Object>(employee, headers, HttpStatus.OK);
 	}
 
 	/* API for creating the employee */

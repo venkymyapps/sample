@@ -22,8 +22,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	/* for retrieving the employee */
 
 	@Override
-	public Employee getEmployee(int id) {
-		return (Employee) entityManager
+	public Object getEmployee(int id) {
+		return entityManager
 				.createNativeQuery("SELECT e.*  FROM sample.employee e where e.id= :id", "employee_details")
 				.setParameter("id", id).getSingleResult();
 	}

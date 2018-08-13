@@ -7,7 +7,7 @@ import org.sample.com.model.Employee;
 
 public interface EmployeeDAO {
 
-		Employee getEmployee(int id);
+		Object getEmployee(int id);
 		boolean deleteEmployee(int id);
 		boolean updateEmployee(String empName, int id);
 		int createEmployee(Employee employee);
