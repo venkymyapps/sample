@@ -122,10 +122,6 @@ public class Location  implements java.io.Serializable {
     public void setNearBy(String nearBy) {
         this.nearBy = nearBy;
     }
-
-
-
-
 }
 
 
