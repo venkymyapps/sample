@@ -1,5 +1,7 @@
 package org.sample.com;
 
+import java.util.Arrays;
+
 /*public class Demo {
 
 	public static void main(String[] args) {
@@ -187,3 +189,20 @@ package org.sample.com;
         }
     }
 }*/
+
+//array examples
+public class Demo {
+	public static void main(String[]args){
+		
+		int[]arr1 = {2734, 2384, 84756, 5376, 9036, 1836, 3984, 9387};
+		String[]arr2 = {"venky", "jathin", "ravi", "madhu", "keerthi", "guru"};
+		
+		System.out.println("array befor sorting:"+Arrays.toString(arr1));
+		Arrays.sort(arr1);
+		System.out.println("array after sorting:"+Arrays.toString(arr1));
+		
+		System.out.println("array before sorting:"+Arrays.toString(arr2));
+		Arrays.sort(arr2);
+		System.out.println("array after sorting:"+Arrays.toString(arr2));
+		}
+}

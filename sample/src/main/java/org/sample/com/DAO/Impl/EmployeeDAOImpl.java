@@ -23,8 +23,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 	@Override
 	public Object getEmployee(int id) {
-		return entityManager
-				.createNativeQuery("SELECT e.*  FROM sample.employee e where e.id= :id", "employee_details")
+		return entityManager.createNativeQuery("SELECT e.*  FROM sample.employee e where e.id= :id", "employee_details")
 				.setParameter("id", id).getSingleResult();
 	}
 
@@ -50,13 +49,16 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	public int createEmployee(Employee employee) {
 		boolean value = entityManager
 				.createNativeQuery(
-						"INSERT IGNORE INTO sample.employee(firstName, empName, joinDate, salary, emailId, status, cityName, companyName, desig, exp, mobileNo)values(:firstName, :empName, :joinDate, :salary, :emailId, :status, :cityName, :companyName, :desig, :exp, :mobileNo)")
-				.setParameter("firstName", employee.getFirstName()).setParameter("empName", employee.getEmpName())
-				.setParameter("joinDate", employee.getJoinDate()).setParameter("salary", employee.getSalary())
-				.setParameter("emailId", employee.getEmailId()).setParameter("status", employee.getStatus())
-				.setParameter("cityName", employee.getcity().getName())
-				.setParameter("companyName", employee.getCompany().getName()).setParameter("desig", employee.getDesig())
-				.setParameter("exp", employee.getExp()).setParameter("mobileNo", employee.getMobileNo())
+						"INSERT IGNORE INTO sample.employee(firstName, lastName, empName, emailId, companyName, gender, dob, age, mobileNo, address, cityName, country, pincode, salary, joinDate, desig, exp, status)values(:firstName, :lastName, :empName, :emailId, :companyName, :gender, :dob, :age, :mobileNo, :address, :cityName, :country, :pincode, :salary, :joinDate, :desig, :exp, :status)")
+				.setParameter("firstName", employee.getFirstName()).setParameter("lastName", employee.getLastName())
+				.setParameter("empName", employee.getEmpName()).setParameter("emailId", employee.getEmailId())
+				.setParameter("companyName", employee.getCompanyName()).setParameter("gender", employee.getGender())
+				.setParameter("dob", employee.getDob()).setParameter("age", employee.getAge())
+				.setParameter("mobileNo", employee.getMobileNo()).setParameter("address", employee.getAddress())
+				.setParameter("cityName", employee.getCityName()).setParameter("country", employee.getCountry())
+				.setParameter("pincode", employee.getPincode()).setParameter("salary", employee.getSalary())
+				.setParameter("joinDate", employee.getJoinDate()).setParameter("desig", employee.getDesig())
+				.setParameter("exp", employee.getExp()).setParameter("status", employee.getStatus())
 				.executeUpdate() == 0 ? false : true;
 		if (value == false)
 			return 0;
@@ -69,8 +71,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	@Override
 	public List<Employee> getEmployees() {
 		return entityManager.createNativeQuery(
-				"select id, firstName, empName, joinDate, salary, emailId, status, cityName, companyname, desig , exp, mobileNo from sample.employee",
-				"employee_view").getResultList();
+				"select id, firstName, lastName, empName, emailId, companyName, gender, dob, age, mobileNo, address, cityName, country, pincode, salary, joinDate, desig, exp, status from sample.employee",
+				"employee_details").getResultList();
 	}
 
 	/* to Delete All Employees */

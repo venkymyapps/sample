@@ -36,7 +36,7 @@ public class UserDAOImpl implements UserDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<City> city() {
-		return entityManager.createQuery("SELECT c FROM City c ORDER BY name").getResultList();
+		return entityManager.createNativeQuery("SELECT c.* FROM sample.city c ORDER BY c.name", "city_details").getResultList();
 	}
 
 	@Override

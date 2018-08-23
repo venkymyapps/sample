@@ -77,7 +77,7 @@ public class Company implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@JsonProperty(access = Access.AUTO)
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cityName", nullable = false)
 	public City getCity() {

@@ -34,15 +34,7 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 				@ColumnResult(name = "dob"), @ColumnResult(name = "age"), @ColumnResult(name = "mobileNo"),
 				@ColumnResult(name = "address"), @ColumnResult(name = "cityName"), @ColumnResult(name = "country"),
 				@ColumnResult(name = "pinCode"), @ColumnResult(name = "salary"), @ColumnResult(name = "joinDate"),
-				@ColumnResult(name = "desig"), @ColumnResult(name = "exp"), @ColumnResult(name = "status") }) }),
-		@SqlResultSetMapping(name = "employee_view", classes = {
-				@ConstructorResult(targetClass = EmployeeDetails.class, columns = { @ColumnResult(name = "id"),
-						@ColumnResult(name = "firstName"), @ColumnResult(name = "empName"),
-						@ColumnResult(name = "joinDate"), @ColumnResult(name = "salary"),
-						@ColumnResult(name = "emailId"), @ColumnResult(name = "status"),
-						@ColumnResult(name = "cityName"), @ColumnResult(name = "companyName"),
-						@ColumnResult(name = "desig"), @ColumnResult(name = "exp"),
-						@ColumnResult(name = "mobileNo") }) }) })
+				@ColumnResult(name = "desig"), @ColumnResult(name = "exp"), @ColumnResult(name = "status") })  }) })
 
 @Entity
 @Table(name = "employee", catalog = "sample", uniqueConstraints = { @UniqueConstraint(columnNames = "emailId"),
@@ -61,13 +53,13 @@ public class Employee implements java.io.Serializable {
 	private Company Company;
 	private String gender;
 	private Date dob;
-	private Boolean age;
+	private int age;
 	private String mobileNo;
 	private String address;
 	private City City;
 	private String country;
 	private String pincode;
-	private Double salary;
+	private double salary;
 	private Date joinDate;
 	private String desig;
 	private int exp;
@@ -84,7 +76,7 @@ public class Employee implements java.io.Serializable {
 	}
 
 	public Employee(String firstName, String lastName, String empName, String emailId, Company Company, String gender,
-			Date dob, Boolean age, String mobileNo, String address, City City, String country, String pincode,
+			Date dob, int age, String mobileNo, String address, City City, String country, String pincode,
 			double salary, Date joinDate, String desig, int exp, Boolean status) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -116,22 +108,6 @@ public class Employee implements java.io.Serializable {
 		this.salary = salary;
 		this.emailId = emailId;
 		this.status = status;
-		this.desig = desig;
-		this.exp = exp;
-		this.mobileNo = mobileNo;
-	}
-
-	public Employee(int id, String firstName, String empName, Date joinDate, double salary, String emailId,
-			boolean status, String cityName, String companyName, String desig, Integer exp, String mobileNo) {
-		this.id = id;
-		this.firstName = firstName;
-		this.empName = empName;
-		this.joinDate = joinDate;
-		this.salary = salary;
-		this.emailId = emailId;
-		this.status = status;
-		this.cityName = cityName;
-		this.companyName = companyName;
 		this.desig = desig;
 		this.exp = exp;
 		this.mobileNo = mobileNo;
@@ -215,11 +191,11 @@ public class Employee implements java.io.Serializable {
 	}
 
 	@Column(name = "age")
-	public Boolean getAge() {
+	public int getAge() {
 		return this.age;
 	}
 
-	public void setAge(Boolean age) {
+	public void setAge(int age) {
 		this.age = age;
 	}
 
