@@ -163,16 +163,16 @@ public class UserController {
 		return new ResponseEntity<Void>(headers, HttpStatus.OK);
 	}
 
-	@ApiOperation(value = "To Delete Location", notes = " To Delete location details")
+	@ApiOperation(value = "To Delete Location", notes = "To Delete location details")
 	@ApiResponses(value = { @ApiResponse(code = 2411, message = "Delete Location Successful"),
 			@ApiResponse(code = 2412, message = "Delete Location Failure") })
-	@RequestMapping(value = "/DeleteLocation/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Void> deleteLocation(@PathVariable("id") int id) {
+	@RequestMapping(value = "/DeleteLocation/", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> deleteCompany(@RequestParam int id) {
 		HttpHeaders headers = new HttpHeaders();
 		if (userService.deleteLocation(id))
-			headers.set("ResponseCode", ResponseCode.DeleteLocationFailure);
-		else
 			headers.set("ResponseCode", ResponseCode.DeleteLocationSuccessful);
+		else
+			headers.set("ResponseCode", ResponseCode.DeleteLocationFailure);
 		return new ResponseEntity<Void>(headers, HttpStatus.OK);
 	}
 }
