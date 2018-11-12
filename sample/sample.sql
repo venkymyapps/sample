@@ -36,7 +36,7 @@ CREATE TABLE `city` (
 
 LOCK TABLES `city` WRITE;
 /*!40000 ALTER TABLE `city` DISABLE KEYS */;
-INSERT INTO `city` VALUES (2,'Banglore'),(3,'Chennai'),(1,'Hyd'),(4,'Mumbai'),(5,'pune');
+INSERT INTO `city` VALUES (2,'Banglore'),(3,'Chennai'),(1,'Hyd'),(4,'Mumbai');
 /*!40000 ALTER TABLE `city` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,7 +57,7 @@ CREATE TABLE `company` (
   UNIQUE KEY `company_idx_name` (`name`),
   KEY `city_name_idx` (`cityName`),
   CONSTRAINT `city_name` FOREIGN KEY (`cityName`) REFERENCES `city` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +66,7 @@ CREATE TABLE `company` (
 
 LOCK TABLES `company` WRITE;
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
-INSERT INTO `company` VALUES (1,'MyApps','Bilekahalli','Hyd','Andhra Pradesh'),(4,'HCL','BTM','Banglore','Karnataka'),(5,'Tech Mahendra','Hitech city','Hyd','Andhrapradesh');
+INSERT INTO `company` VALUES (1,'MyApps','DSR Galleria Building','Hyd','Andhra Pradesh'),(4,'HCL','BTM','Banglore','Karnataka'),(5,'CTS','JP NAGAR','Hyd','Andhra Pradesh');
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -108,22 +108,22 @@ DROP TABLE IF EXISTS `employee`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `employee` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `firstName` varchar(45) DEFAULT NULL,
-  `lastName` varchar(45) DEFAULT NULL,
-  `empName` varchar(45) NOT NULL,
-  `emailId` varchar(45) NOT NULL,
+  `firstName` varchar(250) DEFAULT NULL,
+  `lastName` varchar(250) DEFAULT NULL,
+  `empName` varchar(250) NOT NULL,
+  `emailId` varchar(250) NOT NULL,
   `companyName` varchar(250) DEFAULT NULL,
   `gender` varchar(1) DEFAULT NULL,
   `dob` date DEFAULT NULL,
-  `age` tinyint(1) DEFAULT NULL,
-  `mobileNo` varchar(45) DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `mobileNo` varchar(250) DEFAULT NULL,
   `address` text,
-  `cityName` varchar(45) DEFAULT NULL,
-  `country` varchar(45) DEFAULT NULL,
-  `pincode` varchar(45) DEFAULT NULL,
+  `cityName` varchar(250) DEFAULT NULL,
+  `country` varchar(250) DEFAULT NULL,
+  `pincode` varchar(250) DEFAULT NULL,
   `salary` double DEFAULT NULL,
   `joinDate` date DEFAULT NULL,
-  `desig` varchar(45) DEFAULT NULL,
+  `desig` varchar(250) DEFAULT NULL,
   `exp` int(11) DEFAULT NULL,
   `status` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -131,7 +131,7 @@ CREATE TABLE `employee` (
   KEY `company_Name_idx` (`companyName`),
   CONSTRAINT `city1_name` FOREIGN KEY (`cityName`) REFERENCES `city` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `company_name` FOREIGN KEY (`companyName`) REFERENCES `company` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Employee Details';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='Employee Details';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,6 +140,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
+INSERT INTO `employee` VALUES (3,'aaa','bbb','ccc','vvv@gmail.com','MyApps','m','1991-06-04',25,'9999999999','bbd','Banglore',NULL,'India',20000,'2001-05-04','rd',4,1),(4,'uuu','ggg','bbb','vvss@gmail.com','MyApps','f','1992-03-04',23,'8497587463','bcnn','Banglore','India','524230',59899,'2007-03-04','ht',31,1),(5,'gfhd','nbbd','hfgs','bdgf@gmail.com','MyApps','m','1993-04-02',23,'9384984763','bdg','Banglore','India','478223',25000,'2008-04-01','nf',56,1),(6,'ghn','gdhf','bfgd','bdf@gmail.com','MyApps','m','1992-04-01',33,'9483947832','nfbg','Banglore','India','385674',22000,'2008-02-01','hdf',3,1);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -158,7 +159,7 @@ CREATE TABLE `locality` (
   UNIQUE KEY `locality_name` (`name`),
   KEY `city_id_idx` (`cityId`),
   CONSTRAINT `city_id` FOREIGN KEY (`cityId`) REFERENCES `city` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -167,7 +168,7 @@ CREATE TABLE `locality` (
 
 LOCK TABLES `locality` WRITE;
 /*!40000 ALTER TABLE `locality` DISABLE KEYS */;
-INSERT INTO `locality` VALUES (1,'BTM',1),(2,'Jp Nagar',1),(3,'Bilekahali',1),(4,'Hitech city',2),(5,'Ammerpet',2);
+INSERT INTO `locality` VALUES (1,'jaya nagar',1),(2,'Jp Nagar',1),(3,'Bilekahali',1),(4,'Hitech city',2),(5,'Ammerpet',2),(7,'bbbb',2);
 /*!40000 ALTER TABLE `locality` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -191,7 +192,7 @@ CREATE TABLE `location` (
   KEY `city_id_idx` (`cityId`),
   CONSTRAINT `location_city_id` FOREIGN KEY (`cityId`) REFERENCES `city` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `location_locality_id` FOREIGN KEY (`localityId`) REFERENCES `locality` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -200,7 +201,7 @@ CREATE TABLE `location` (
 
 LOCK TABLES `location` WRITE;
 /*!40000 ALTER TABLE `location` DISABLE KEYS */;
-INSERT INTO `location` VALUES (1,'fffff','aaa','dwwd','hdhs',1,1),(2,'bbbb','cccc','dddd','eeee',1,2);
+INSERT INTO `location` VALUES (4,'aaa','bbb','ccc','ddd',1,1),(5,'bbb','ccc','ddd','eee',1,1);
 /*!40000 ALTER TABLE `location` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -367,4 +368,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-23 18:12:37
+-- Dump completed on 2018-11-12 13:40:27
