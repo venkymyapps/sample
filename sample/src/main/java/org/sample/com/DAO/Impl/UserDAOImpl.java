@@ -98,9 +98,8 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public boolean deleteLocation(int id) {
-		entityManager.createNativeQuery("delete l.* from sample.location l where l.id= :id").setParameter("id", id)
-				.executeUpdate();
-		return false;
+		return entityManager.createNativeQuery("delete l.* from sample.location l where l.id= :id").setParameter("id", id)
+				.executeUpdate() == 0 ? false : true;
 	}
 	
 	@Override
